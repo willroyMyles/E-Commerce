@@ -1512,9 +1512,10 @@ pre code {
 }
 
 .table {
-  width: 100%;
   margin-bottom: 1rem;
   color: #212529;
+    margin-right: 4px;
+    margin-left: 24px;
 }
 
 .table th,
@@ -1774,6 +1775,8 @@ pre code {
 .table-dark {
   color: #fff;
   background-color: #343a40;
+    margin-left: 0px;
+    margin-top: 0px;
 }
 
 .table-dark th,

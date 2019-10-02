@@ -177,6 +177,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Cart.aspx" />
+    <Content Include="CartV2.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -281,6 +282,17 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="CatDataSet.xsc">
+      <DependentUpon>CatDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="CatDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CatDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="CatDataSet.xss">
+      <DependentUpon>CatDataSet.xsd</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
@@ -406,6 +418,14 @@
     <Compile Include="Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CartV2.aspx.cs">
+      <DependentUpon>CartV2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CartV2.aspx.designer.cs">
+      <DependentUpon>CartV2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cats.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -471,8 +491,13 @@
     <Compile Include="Migrations\201909290409417_AddedAdminToUserSchema.Designer.cs">
       <DependentUpon>201909290409417_AddedAdminToUserSchema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909292008077_AddedCatTable.cs" />
+    <Compile Include="Migrations\201909292008077_AddedCatTable.Designer.cs">
+      <DependentUpon>201909292008077_AddedCatTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Orders.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductsPage.aspx.cs">
       <DependentUpon>ProductsPage.aspx</DependentUpon>
@@ -504,9 +529,15 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="CatDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CatDataSet.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="XDs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -546,6 +577,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909290409417_AddedAdminToUserSchema.resx">
       <DependentUpon>201909290409417_AddedAdminToUserSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909292008077_AddedCatTable.resx">
+      <DependentUpon>201909292008077_AddedCatTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

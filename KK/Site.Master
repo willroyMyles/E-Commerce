@@ -17,7 +17,7 @@
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods="true">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
@@ -61,11 +61,7 @@
                             <a href="~/Contact" class="nav-link" runat="server">Contact</a>
                         </div>
                         <div class="col-md-1 nav-item">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cart-plus" aria-hidden="true"></i> Cart</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown10">
-                                <a class="dropdown-item" href="~/Cart" runat="server">view cart</a>
-                                <a class="dropdown-item" href="#">empty cart</a>
-                            </div>
+                          
                         </div>
                         <div class="col-md-1 nav-item">
                             <a class="nav-link"></a>
@@ -90,7 +86,7 @@
                             <a class="nav-link">order history</a>
                         </div>
                         <div class="col-md-1 nav-item">
-                            <a class="nav-link">view cart</a>
+                                <a class="nav-link" href="~/CartV2" runat="server">view cart</a>                            
                         </div>
 
                             <% } %>
@@ -101,7 +97,7 @@
                             <div class="dropdown-menu" aria-labelledby="account10">
                             <a class="dropdown-item" runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%= GetUserName()  %> !</a>
                             <asp:LoginStatus class="dropdown-item" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                <a class="dropdown-item" href="#">empty cart</a>
+                                
                             </div>
                                                             </div>
                                

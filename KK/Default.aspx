@@ -135,12 +135,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
-
-
                     </div>
 
 
@@ -219,6 +214,8 @@
 
 
     <script>
+
+        
         $(document).ready( ()=> {
             console.log("loaded");
 

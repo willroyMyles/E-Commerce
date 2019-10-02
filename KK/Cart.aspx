@@ -6,7 +6,7 @@
         
         <div class="row">
             <div class="col-md-12">
-                <h4>view items in your cart</h1>
+                <h4>View items in your cart</h1>
             </div>
         </div>
         <hr>

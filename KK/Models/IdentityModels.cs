@@ -73,6 +73,7 @@ namespace KK.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Product>().ToTable("Products");
+            modelBuilder.Entity<Cats>().ToTable("Cats");
         }
     }
 }
