@@ -11,7 +11,7 @@ namespace KK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         static void Print(object obj)
@@ -23,6 +23,12 @@ namespace KK
         {
             System.Web.UI.WebControls.Button btn = (System.Web.UI.WebControls.Button)sender;
             Product prod = new Product();
+            if (GV.user == null)
+            {
+                Response.Redirect("~/Account/Login.aspx");
+                return;
+            }
+           
 
             if (btn.ID.Equals(p1_submit.ID))
             {
@@ -57,6 +63,17 @@ namespace KK
             }
 
             DefaultConnectionTableAdapters.ProductsTableAdapter pta = new DefaultConnectionTableAdapters.ProductsTableAdapter();
+            var table = pta.GetDataByOwnerId(GV.user.Id);
+
+            for (int i = 0; i < table.Count; i++ )
+            {
+                var row = table[i];
+                if (row.Name == prod.Name)
+                {
+                    pta.UpdateProductCount(row.Quantity + prod.Quantity, GV.user.Id, row.Id);
+                    return;
+                }
+            }
             pta.Insert(Guid.NewGuid().ToString(),
                 prod.Name,
                 prod.Price,
@@ -66,7 +83,6 @@ namespace KK
                 prod.Img,
                 prod.Description,
                 GV.user.Id);
-
         }
     }
 }

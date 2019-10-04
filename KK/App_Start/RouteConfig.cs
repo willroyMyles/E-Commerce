@@ -13,6 +13,7 @@ namespace KK
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
+            
         }
     }
 }

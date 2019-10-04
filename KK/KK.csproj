@@ -225,6 +225,7 @@
     <Content Include="DefaultConnection.xsc">
       <DependentUpon>DefaultConnection.xsd</DependentUpon>
     </Content>
+    <Content Include=".editorconfig" />
     <None Include="DefaultConnection.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -495,6 +496,10 @@
     <Compile Include="Migrations\201909292008077_AddedCatTable.Designer.cs">
       <DependentUpon>201909292008077_AddedCatTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910021445424_UpdateName.cs" />
+    <Compile Include="Migrations\201910021445424_UpdateName.Designer.cs">
+      <DependentUpon>201910021445424_UpdateName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Orders.cs" />
@@ -580,6 +585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909292008077_AddedCatTable.resx">
       <DependentUpon>201909292008077_AddedCatTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910021445424_UpdateName.resx">
+      <DependentUpon>201910021445424_UpdateName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

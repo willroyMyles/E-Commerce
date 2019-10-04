@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using KK.Models;
 using System.Data.Entity;
+using System.Data;
 
 namespace KK.Models
 {
@@ -74,6 +75,8 @@ namespace KK.Models
 
             modelBuilder.Entity<Product>().ToTable("Products");
             modelBuilder.Entity<Cats>().ToTable("Cats");
+
+            
         }
     }
 }

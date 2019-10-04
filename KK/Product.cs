@@ -41,6 +41,7 @@ namespace KK
         public static List<Product> productsList = new List<Product>();
         private static int counter = 0;
 
+    
         public string Name { get => name; set => name = value; }
         public int Price { get => price; set => price = value; }
         public int Total { get => price * quantity; }

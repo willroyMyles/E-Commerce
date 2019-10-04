@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 
 namespace KK
 {
@@ -10,7 +11,12 @@ namespace KK
     {
         public static ApplicationUser user = null;
 
-        public static void OnLogin(ApplicationUser user1) => user = user1;
+        
+        public static string OnLogin(ApplicationUser user1)
+        {
+            user = user1;
+            return user.Id;
+        }
         public static void OnLogout() => user = null;
 
     }

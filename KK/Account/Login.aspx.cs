@@ -39,7 +39,8 @@ namespace KK.Account
                 {
                     case SignInStatus.Success:
                         ApplicationUserManager manager1 = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                        GV.OnLogin(manager1.FindByEmail(Context.User.Identity.Name));
+                        Session["userId"] = GV.OnLogin(manager1.FindByEmail(Email.Text));
+                            
                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case SignInStatus.LockedOut:

@@ -52,13 +52,13 @@
                             <a href="~/" runat="server" class="nav-link">kitty</a>
                         </div>
                         <div class="col-md-1 nav-item">
-                            <a href="/#products" runat="server" class="nav-link">Product</a>
+                            <a href="/#products.aspx" runat="server" class="nav-link">Product</a>
                         </div>
                         <div class="col-md-1 nav-item">
-                            <a href="~/About" runat="server" onclick="Response.redirect('~/About');" class="nav-link">about</a>
+                            <a href="~/About.aspx" runat="server" onclick="Response.redirect('~/About');" class="nav-link">about</a>
                         </div>
                         <div class="col-md-1 nav-item">
-                            <a href="~/Contact" class="nav-link" runat="server">Contact</a>
+                            <a href="~/Contact.aspx" class="nav-link" runat="server">Contact</a>
                         </div>
                         <div class="col-md-1 nav-item">
                           
@@ -75,7 +75,7 @@
                                 <% if (IsAdmin())
                                     { %>
                         <div class="col-md-1 nav-item">
-                            <a class="nav-link" href="~/Manage/ManageProducts" runat="server">Manage Products</a>
+                            <a class="nav-link" href="~/Manage/ManageProducts.aspx" runat="server">Manage Products</a>
                         </div>
                         <div class="col-md-1 nav-item">
                             <a class="nav-link">Manage Users</a>
@@ -86,7 +86,7 @@
                             <a class="nav-link">order history</a>
                         </div>
                         <div class="col-md-1 nav-item">
-                                <a class="nav-link" href="~/CartV2" runat="server">view cart</a>                            
+                                <a class="nav-link" href="/CartV2" runat="server">view cart</a>                            
                         </div>
 
                             <% } %>
@@ -95,7 +95,7 @@
                              <%--<a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.Name  %> !</a>--%>
                              <a class="nav-link dropdown-toggle" href="#" id="account10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
                             <div class="dropdown-menu" aria-labelledby="account10">
-                            <a class="dropdown-item" runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%= GetUserName()  %> !</a>
+                            <a class="dropdown-item" runat="server" href="~/Account/Manage.aspx" title="Manage your account">Hello, <%= GetUserName()  %> !</a>
                             <asp:LoginStatus class="dropdown-item" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 
                             </div>
@@ -106,10 +106,10 @@
 
                             <AnonymousTemplate>
                                 <div class="col-md-1">
-                                   <a class="nav-link" runat="server" href="~/Account/Register">Register</a>
+                                   <a class="nav-link" runat="server" href="~/Account/Register.aspx">Register</a>
                                 </div>
                                 <div class="col-md-2">
-                                   <a class="nav-link" runat="server" href="~/Account/Login">Log in</a>
+                                   <a class="nav-link" runat="server" href="~/Account/Login.aspx">Log in</a>
                                 </div>
                                 
                                 
