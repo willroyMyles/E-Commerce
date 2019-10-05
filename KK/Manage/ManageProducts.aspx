@@ -78,7 +78,13 @@
                                     <div class="row p-1">
                                         <div class="col-md-2">Img </div>
                                         <div class="col-md-10">
-                                            <asp:TextBox ID="Img" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="Img" runat="server" CssClass="form-control" Text="Img name"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="row p-1">
+                                        <div class="col-md-2">Img </div>
+                                        <div class="col-md-10">
+                                            <asp:FileUpload ID="FileUploadCreate" runat="server" />
                                         </div>
                                     </div>
                                     <div class="row p-1">
@@ -150,7 +156,13 @@
                                         <div class="row p-1">
                                             <div class="col-md-2">Img </div>
                                             <div class="col-md-10">
-                                                <asp:TextBox ID="ImgUpdate" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="ImgUpdate" runat="server" CssClass="form-control" Text="Img name"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="row p-1">
+                                            <div class="col-md-2">Img </div>
+                                            <div class="col-md-10">
+                                                <asp:FileUpload ID="FileUploadEdit" runat="server" />
                                             </div>
                                         </div>
                                         <div class="row p-1">

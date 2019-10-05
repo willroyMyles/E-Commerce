@@ -60,6 +60,15 @@ namespace KK.Manage
         protected global::System.Web.UI.WebControls.TextBox Img;
 
         /// <summary>
+        /// FileUploadCreate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadCreate;
+
+        /// <summary>
         /// Description control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace KK.Manage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ImgUpdate;
+
+        /// <summary>
+        /// FileUploadEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadEdit;
 
         /// <summary>
         /// DescriptionUpdate control.

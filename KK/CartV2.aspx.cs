@@ -60,7 +60,7 @@ namespace KK
 
                 lit.Text = lit.Text.Replace("name", prod[i].Name);
                 lit.Text = lit.Text.Replace("price", prod[i].Price.ToString());
-                lit.Text = lit.Text.Replace("image", prod[i].Img);
+                lit.Text = lit.Text.Replace("image","/images/"+ prod[i].Img +".png");
                 lit.Text = lit.Text.Replace("description", prod[i].Description);
                 lit.Text = lit.Text.Replace("divId", "divId" + i);
                 lit.Text = lit.Text.Replace("total", prod[i].Total.ToString());

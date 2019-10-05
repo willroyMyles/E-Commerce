@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -26,6 +27,27 @@ namespace KK.Manage
             DefaultConnection.ProductsDataTable products = ap.GetData();
 
             CatDataSetTableAdapters.CatsTableAdapter catsAdapter = new CatDataSetTableAdapters.CatsTableAdapter();
+
+            if (FileUploadCreate.HasFile)
+            {
+                try
+                {
+                    if (FileUploadCreate.PostedFile.ContentType == "image/jpeg" || FileUploadCreate.PostedFile.ContentType == "image/png")
+                    {
+                        if (FileUploadCreate.PostedFile.ContentLength < 102400)
+                        {
+                            var ext = Path.GetExtension(FileUploadCreate.FileName);
+                            FileUploadCreate.SaveAs(Server.MapPath("~/images/") + Img.Text+ext);
+                        }
+                        else { }
+                    }
+                    else { }
+                }
+                catch (Exception ex)
+                {
+                    //StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
+                }
+            }
 
             var price = int.Parse(Price.Text);
             var quantity = int.Parse(Quantity.Text);
@@ -63,6 +85,26 @@ namespace KK.Manage
 
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
+            if (FileUploadEdit.HasFile)
+            {
+                try
+                {
+                    if (FileUploadEdit.PostedFile.ContentType == "image/jpeg" || FileUploadEdit.PostedFile.ContentType == "image/png")
+                    {
+                        if (FileUploadEdit.PostedFile.ContentLength < 102400)
+                        {
+                            var ext = Path.GetExtension(FileUploadEdit.FileName);
+                            FileUploadEdit.SaveAs(Server.MapPath("~/images/") + Img.Text + ext);
+                        }
+                        else { }
+                    }
+                    else { }
+                }
+                catch (Exception ex)
+                {
+                    //StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
+                }
+            }
             CatDataSetTableAdapters.CatsTableAdapter catsAdapter = new CatDataSetTableAdapters.CatsTableAdapter();
             var price = int.Parse(PriceUpdate.Text);
             var quantity = int.Parse(QuantityUpdate.Text);
