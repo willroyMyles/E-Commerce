@@ -185,13 +185,17 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Account\Web.config" />
     <Content Include="ManageRoles.aspx" />
     <Content Include="Manage\ManageProducts.aspx" />
+    <Content Include="ProductPage.aspx" />
     <Content Include="ProductsPage.aspx" />
     <Content Include="Scripts\bootstrap-input-spinner.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -234,6 +238,11 @@
     <Content Include="DefaultConnection.xss">
       <DependentUpon>DefaultConnection.xsd</DependentUpon>
     </Content>
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -504,6 +513,13 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Orders.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductPage.aspx.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductPage.aspx.designer.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ProductsPage.aspx.cs">
       <DependentUpon>ProductsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

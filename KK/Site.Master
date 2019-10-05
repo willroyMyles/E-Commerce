@@ -13,9 +13,11 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Content/font-awesome.css" rel="stylesheet" />
 
 </head>
 <body>
+    <%--<a href="Site.Master">Site.Master</a>--%>
     <form runat="server">
         <asp:ScriptManager runat="server" EnablePageMethods="true">
             <Scripts>
@@ -52,7 +54,7 @@
                             <a href="~/" runat="server" class="nav-link">kitty</a>
                         </div>
                         <div class="col-md-1 nav-item">
-                            <a href="/#products.aspx" runat="server" class="nav-link">Product</a>
+                            <a href="/ProductPage.aspx" runat="server" class="nav-link">Product</a>
                         </div>
                         <div class="col-md-1 nav-item">
                             <a href="~/About.aspx" runat="server" onclick="Response.redirect('~/About');" class="nav-link">about</a>
@@ -128,6 +130,9 @@
 
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ProductContent" runat="server">
+
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
