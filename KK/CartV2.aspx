@@ -142,16 +142,19 @@
         function showbutton(e) {
             var id = e.id.split('_')[1];
             var btn = $("#buttonn_" + id);
-            console.log(btn);
 
             btn.attr("hidden", false);
             
         }
 
         function changeHiddenValue(e) {
-            var hiddenId = "hiddenValue_" + e.id.split('_')[1];
-            var hiddenElement = $("[id$=" + hiddenId+"]");
+            var num = e.id.split('_')[1];
+            var hiddenId = "hiddenValue_" + num;
+            var spin = $("#spin_" + num);
+            var hiddenElement = $("[id$=" + hiddenId + "]");
+            hiddenElement.val(spin.val())
             console.log(hiddenElement);
+            __doPostBack();
         }
 
 

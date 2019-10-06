@@ -14,6 +14,8 @@ namespace KK
         public void Page_Load(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("called");
+            ClientScript.GetPostBackEventReference(this, string.Empty);
+
         }
 
         public static int counter = 0;
@@ -21,8 +23,15 @@ namespace KK
         {
             base.OnInit(e);
 
-            counter = 0;
 
+
+            counter = 0;
+            SetUp();
+           
+        }
+
+        public void SetUp()
+        {
             var prod = GetProducts();
             for (int i = 0; i < prod.Count; i++)
             {
@@ -55,7 +64,7 @@ namespace KK
                                                             
                                                         <div class='my-2'>
                                                         <button type='button' hidden='true' id='buttonn' onclick='changeHiddenValue(this)' class='btn btn-primary btn-block'>Update</button>
-<asp:PlaceHolder ID='placeholder' runat='server' /> </div>
+                                                    <asp:PlaceHolder ID='placeholder' runat='server' /> </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,15 +74,15 @@ namespace KK
 
                 lit = lit.Replace("name", prod[i].Name);
                 lit = lit.Replace("price", prod[i].Price.ToString());
-                lit = lit.Replace("image","/images/"+ prod[i].Img +".png");
+                lit = lit.Replace("image", "/images/" + prod[i].Img + ".png");
                 lit = lit.Replace("description", prod[i].Description);
                 //lit = lit.Replace("divId", "divId" + i);
                 lit = lit.Replace("total", prod[i].Total.ToString());
-                lit = lit.Replace("placeholder", "place_"+i);
-                
-                lit = lit.Replace("somid", "spin_"+i);
+                lit = lit.Replace("placeholder", "place_" + i);
+
+                lit = lit.Replace("somid", "spin_" + i);
                 lit = lit.Replace("somtext", prod[i].Quantity.ToString());
-                lit = lit.Replace("buttonn", "buttonn_"+i);
+                lit = lit.Replace("buttonn", "buttonn_" + i);
 
                 var control = ParseControl(lit);
                 Cont.Controls.Add(control);
@@ -91,11 +100,11 @@ namespace KK
 
 
                 var btn = new HiddenField();
-                btn.ID = "hiddenValue_"+i.ToString();
+                btn.ID = "hiddenValue_" + i.ToString();
                 btn.Value = "";
                 btn.ValueChanged += UpdateItem;
-                
-               
+
+
 
                 var holder = panel.FindControl("place_" + i);
                 //holder.Controls.Add(input);
@@ -140,9 +149,17 @@ namespace KK
 
         public void UpdateItem(object sender, EventArgs e)
         {
-            var senderBtn = (Button)sender;
-            senderBtn.Visible = false;
+            var senderBtn = (HiddenField)sender;
+            //senderBtn.Visible = false;
+            DefaultConnectionTableAdapters.ProductsTableAdapter pta = new DefaultConnectionTableAdapters.ProductsTableAdapter();
+            //var parameters = ObjectDataSource1.Select();
+           var table = pta.GetDataByOwnerId(GV.user.Id);
+            var rowNumber = int.Parse(senderBtn.ID.Split('_')[1]);
+            var row = table[rowNumber];
+            pta.UpdateProductCount(int.Parse(senderBtn.Value), row.Owner, row.Id);
+            Response.Redirect("~/CartV2.aspx");
             return;
+            
         }
 
         [System.Web.Services.WebMethod()]
