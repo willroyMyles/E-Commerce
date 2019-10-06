@@ -2,7 +2,6 @@
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    hello
 
     <asp:UpdatePanel ID="panel" runat="server" >
         <ContentTemplate >

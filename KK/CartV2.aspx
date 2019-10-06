@@ -1,6 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CartV2.aspx.cs" Inherits="KK.CartV2" EnableEventValidation="false" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CartV2.aspx.cs" Inherits="KK.CartV2" %>
+<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
+   
+
+         <asp:UpdatePanel runat="server" ID="panel" >
+            <ContentTemplate >   
+                 <div class="container">
         <div class="row my-3">
             <div class="col-md-10">
                 <h3>View items in cart</h3>
@@ -11,10 +15,11 @@
         </div>
         <hr>
 
-        
-         
-    
-       <!-- Modal -->
+                      <div class="row" id="Cont" runat="server">
+                          
+                    </div>
+
+                       <!-- Modal -->
        <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
            <div class="modal-dialog modal-dialog-centered modal-dark modal-lg" role="document">
                <div class="modal-content">
@@ -51,17 +56,19 @@
         
         <div class="row">
             <div class="col-md-12">
-                <asp:GridView ID="GridView" OnLoad="GridView_Load" runat="server" CssClass="table table-dark" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="ObjectDataSource1">
+                <asp:GridView ID="GridView" OnLoad="GridView_Load" runat="server" CssClass="table table-dark" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True">
                     <Columns>
-                        <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" />
-                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                        <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                        <asp:BoundField DataField="Name" HeaderText="Name" ReadOnly="True" SortExpression="Name" />
+                        <asp:BoundField DataField="Description" HeaderText="Description" ReadOnly="True" SortExpression="Description" />
+                        <asp:BoundField DataField="Img" HeaderText="Img" ReadOnly="True" SortExpression="Img" />
+                        <asp:BoundField DataField="Price" HeaderText="Price" ReadOnly="True" SortExpression="Price" />
                         <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
-                        <asp:BoundField DataField="Purchased" HeaderText="Purchased" SortExpression="Purchased" />
-                        <asp:BoundField DataField="Category" HeaderText="Category" SortExpression="Category" />
-                        <asp:BoundField DataField="Img" HeaderText="Img" SortExpression="Img" />
-                        <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
-                        <asp:BoundField DataField="Owner" HeaderText="Owner" SortExpression="Owner" />
+                        <asp:TemplateField HeaderText="Total">
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# (int)Eval("Price") * (int)Eval("Quantity") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DeleteMethod="Delete" InsertMethod="Insert" OldValuesParameterFormatString="original_{0}" SelectMethod="GetDataByOwnerId" TypeName="KK.DefaultConnectionTableAdapters.ProductsTableAdapter" UpdateMethod="Update">
@@ -94,57 +101,60 @@
                         <asp:Parameter Name="Original_Id" Type="String" />
                     </UpdateParameters>
                 </asp:ObjectDataSource>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Name], [Price], [Quantity], [Description] FROM [Products] WHERE ([Id] = @Id)">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT Id, Name, Price, Quantity, Category, Img, Description, Owner FROM Products WHERE (Owner = @owner)" DeleteCommand="DELETE FROM [Products] WHERE [Id] = @Id" InsertCommand="INSERT INTO [Products] ([Id], [Name], [Price], [Quantity], [Category], [Img], [Description], [Owner]) VALUES (@Id, @Name, @Price, @Quantity, @Category, @Img, @Description, @Owner)" UpdateCommand="UPDATE Products SET Quantity = @Quantity WHERE (Id = @Id)">
+                    <DeleteParameters>
+                        <asp:Parameter Name="Id" Type="String" />
+                    </DeleteParameters>
+                    <InsertParameters>
+                        <asp:Parameter Name="Id" Type="String" />
+                        <asp:Parameter Name="Name" Type="String" />
+                        <asp:Parameter Name="Price" Type="Int32" />
+                        <asp:Parameter Name="Quantity" Type="Int32" />
+                        <asp:Parameter Name="Category" Type="Int32" />
+                        <asp:Parameter Name="Img" Type="String" />
+                        <asp:Parameter Name="Description" Type="String" />
+                        <asp:Parameter Name="Owner" Type="String" />
+                    </InsertParameters>
                     <SelectParameters>
-                        <asp:SessionParameter Name="Id" SessionField="userId" Type="String" />
+                        <asp:SessionParameter Name="owner" SessionField="userId" />
                     </SelectParameters>
+                    <UpdateParameters>
+                        <asp:Parameter Name="Quantity" Type="Int32" />
+                        <asp:Parameter Name="Id" Type="String" />
+                    </UpdateParameters>
                 </asp:SqlDataSource>
             </div>
         </div>
-
-        <asp:UpdatePanel runat="server" ID="panel" >
-            <ContentTemplate >
-                
-                      <div class="row" id="Cont" runat="server">
-                          <asp:PlaceHolder ID="placeHolder" runat="server">
-        
-                </asp:PlaceHolder>
-
-                    </div>
-                
-                  
-                
+    </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-    </div>
+         
+    
+     
 
     <script>
         $(document).ready((e) => {
 
-           $("input[type=number]").inputSpinner();
+            $("input[type=number]").inputSpinner();
+           
         });
 
-        function changed(e) {
-            e = e || window.event;
-            var target = e.target;
-            console.log(target);
+        function showbutton(e) {
+            var id = e.id.split('_')[1];
+            var btn = $("#buttonn_" + id);
+            console.log(btn);
 
-
-            var str = { msg: str };
-            $.ajax({
-                method: "POST",
-                type: "POST",
-                url: "CartV2.aspx/UpdateItem",
-                data: JSON.stringify(str),
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
-                },
-                success: function (result) {
-                    alert("We returned: " + result);
-                }
-            });
+            btn.attr("hidden", false);
+            
         }
+
+        function changeHiddenValue(e) {
+            var hiddenId = "hiddenValue_" + e.id.split('_')[1];
+            var hiddenElement = $("[id$=" + hiddenId+"]");
+            console.log(hiddenElement);
+        }
+
+
+       
     </script>
 </asp:Content>

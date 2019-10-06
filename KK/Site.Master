@@ -80,7 +80,7 @@
                             <a class="nav-link" href="~/Manage/ManageProducts.aspx" runat="server">Manage Products</a>
                         </div>
                         <div class="col-md-1 nav-item">
-                            <a class="nav-link">Manage Users</a>
+                            <a class="nav-link" href="~/Manage/ManageUsers.aspx" runat="server">Manage Users</a>
                         </div>
 
                                 <%}else{  %>

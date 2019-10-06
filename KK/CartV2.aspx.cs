@@ -11,23 +11,22 @@ namespace KK
     public partial class CartV2 : System.Web.UI.Page
     {
 
-        public static int counter = 0;
-
-        protected override void OnInit(EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Debug.WriteLine("called");
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        public static int counter = 0;
+        protected override void OnInit(EventArgs e)
         {
+            base.OnInit(e);
 
             counter = 0;
 
             var prod = GetProducts();
-            for (int i = 0; i < GetProducts().Count; i++)
+            for (int i = 0; i < prod.Count; i++)
             {
-                LiteralControl lit = new LiteralControl();
-                lit.Text = @"<div class='col-md-4'>
+                string lit = @"<div class='col-md-4'>
                                             <div class='card shadow-sm'>
                                             <div class='card-body'>
                                                 <div class='row'>
@@ -48,9 +47,15 @@ namespace KK
                                                             <small class='text-muted col-md-3'>Price</small>
                                                         </div>        
                                                         <div class='row'>
-                                                        <div id = 'divId' runat='server' class='col-md-8'></div>              
+                                                        <div class='col-md-8'>
+                                                            <input class='col-md-8' id='somid' text='somtext' type='number' value='somtext' min='1' onchange='showbutton(this)' />
+                                                        </div>              
                                                         <div class='col-md-3 text-center align-middle form-control'>$total</div>              
                                                         </div>
+                                                            
+                                                        <div class='my-2'>
+                                                        <button type='button' hidden='true' id='buttonn' onclick='changeHiddenValue(this)' class='btn btn-primary btn-block'>Update</button>
+<asp:PlaceHolder ID='placeholder' runat='server' /> </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -58,39 +63,48 @@ namespace KK
                                     </div>
                             ";
 
-                lit.Text = lit.Text.Replace("name", prod[i].Name);
-                lit.Text = lit.Text.Replace("price", prod[i].Price.ToString());
-                lit.Text = lit.Text.Replace("image","/images/"+ prod[i].Img +".png");
-                lit.Text = lit.Text.Replace("description", prod[i].Description);
-                lit.Text = lit.Text.Replace("divId", "divId" + i);
-                lit.Text = lit.Text.Replace("total", prod[i].Total.ToString());
+                lit = lit.Replace("name", prod[i].Name);
+                lit = lit.Replace("price", prod[i].Price.ToString());
+                lit = lit.Replace("image","/images/"+ prod[i].Img +".png");
+                lit = lit.Replace("description", prod[i].Description);
+                //lit = lit.Replace("divId", "divId" + i);
+                lit = lit.Replace("total", prod[i].Total.ToString());
+                lit = lit.Replace("placeholder", "place_"+i);
+                
+                lit = lit.Replace("somid", "spin_"+i);
+                lit = lit.Replace("somtext", prod[i].Quantity.ToString());
+                lit = lit.Replace("buttonn", "buttonn_"+i);
 
-                var control = ParseControl(lit.Text);
-
-                placeHolder.Controls.Add(control);
+                var control = ParseControl(lit);
+                Cont.Controls.Add(control);
             }
 
             for (int i = 0; i < GetProducts().Count; i++)
             {
-                var input = new TextBox();
-                input.ID = i.ToString();
-                input.TextMode = TextBoxMode.Number;
-                input.Text = prod[i].Quantity.ToString();
-                input.TextChanged += new EventHandler(this.UpdateItem);
-                input.TextChanged += UpdateItem;
-                
+                //var input = new TextBox();
+                //input.ID = i.ToString();
+                //input.TextMode = TextBoxMode.Number;
+                //input.Text = prod[i].Quantity.ToString();
+                //input.TextChanged += TextBox1_TextChanged;
+                //input.CausesValidation = false;
+                //input.AutoPostBack = true;
 
-                var holder = panel.FindControl("divId" + i);
-                holder.Controls.Add(input);
+
+                var btn = new HiddenField();
+                btn.ID = "hiddenValue_"+i.ToString();
+                btn.Value = "";
+                btn.ValueChanged += UpdateItem;
+                
+               
+
+                var holder = panel.FindControl("place_" + i);
+                //holder.Controls.Add(input);
+                holder.Controls.Add(btn);
             }
-            panel.UpdateMode = UpdatePanelUpdateMode.Conditional;
-            panel.Update();
 
             updateTotal();
-
-
-
-
+            panel.UpdateMode = UpdatePanelUpdateMode.Conditional;
+            panel.Update();
         }
 
         private void updateTotal()
@@ -117,15 +131,6 @@ namespace KK
 
         protected static int GetCounter() => counter;
 
-        [System.Web.Services.WebMethod()]
-        [System.Web.Script.Services.ScriptMethod()]
-        public static void DeleteItem(int num)
-        {
-
-            System.Diagnostics.Debug.WriteLine("intersting " + num);
-
-        }
-
         public int GetProductQuantity(string id)
         {
 
@@ -133,9 +138,10 @@ namespace KK
             return pta.GetOneProductById(id)[0].Quantity;
         }
 
-        [WebMethod]
         public void UpdateItem(object sender, EventArgs e)
         {
+            var senderBtn = (Button)sender;
+            senderBtn.Visible = false;
             return;
         }
 
@@ -179,6 +185,14 @@ namespace KK
 
         }
 
+        public void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            var senderBtn = (TextBox)sender;
+            var btn = panel.FindControl("btn_" + senderBtn.ID);
+            if (btn.Visible == false) btn.Visible = true;
+             ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "$('inout[type=number]').inputSpinner();", true);
+            panel.Update();
+        }
 
     }
 }
