@@ -43,8 +43,7 @@ namespace KK
                                                         <h5>name</h5>
                                                     </div>
                                                     <div class='col-md-6 text-right align-bottom'>
-                                                       <h6 class='text-success'>$price</h1></div>
-                                                       <a class='' href='#' ><i class='fa fa-times-circle' aria-hidden='true'></i></a>
+                                                       <h5 class='text-success'>$price</h5></div>
                                                 </div>
                                                 
                                                 <img src ='image' class='img-fluid' />
@@ -57,7 +56,7 @@ namespace KK
                                                         </div>        
                                                         <div class='row'>
                                                         <div class='col-md-8'>
-                                                            <input class='col-md-8' id='somid' text='somtext' type='number' value='somtext' min='1' onchange='showbutton(this)' />
+                                                            <input class='col-md-8' id='somid' text='somtext' type='number' value='somtext' min='0' onchange='showbutton(this)' />
                                                         </div>              
                                                         <div class='col-md-3 text-center align-middle form-control'>$total</div>              
                                                         </div>
@@ -150,17 +149,18 @@ namespace KK
         public void UpdateItem(object sender, EventArgs e)
         {
             var senderBtn = (HiddenField)sender;
-            //senderBtn.Visible = false;
+            //senderBtn.Visible = false
             DefaultConnectionTableAdapters.ProductsTableAdapter pta = new DefaultConnectionTableAdapters.ProductsTableAdapter();
             //var parameters = ObjectDataSource1.Select();
            var table = pta.GetDataByOwnerId(GV.user.Id);
             var rowNumber = int.Parse(senderBtn.ID.Split('_')[1]);
             var row = table[rowNumber];
-            pta.UpdateProductCount(int.Parse(senderBtn.Value), row.Owner, row.Id);
+            if (int.Parse(senderBtn.Value) == 0) pta.Delete(row.Id);
+            else pta.UpdateProductCount(int.Parse(senderBtn.Value), row.Owner, row.Id);
             Response.Redirect("~/CartV2.aspx");
-            return;
             
         }
+
 
         [System.Web.Services.WebMethod()]
         [System.Web.Script.Services.ScriptMethod()]

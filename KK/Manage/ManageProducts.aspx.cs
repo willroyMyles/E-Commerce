@@ -34,7 +34,7 @@ namespace KK.Manage
                 {
                     if (FileUploadCreate.PostedFile.ContentType == "image/jpeg" || FileUploadCreate.PostedFile.ContentType == "image/png")
                     {
-                        if (FileUploadCreate.PostedFile.ContentLength < 102400)
+                        if (FileUploadCreate.PostedFile.ContentLength < 1024000)
                         {
                             var ext = Path.GetExtension(FileUploadCreate.FileName);
                             FileUploadCreate.SaveAs(Server.MapPath("~/images/") + Img.Text+ext);

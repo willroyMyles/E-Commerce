@@ -146,7 +146,7 @@ namespace KK
                 prod.Description,
                 GV.user.Id, true);
 
-            Response.Redirect("/CartV2.aspx");
+            Response.Redirect("/ProductPage.aspx");
         }
     }
 }

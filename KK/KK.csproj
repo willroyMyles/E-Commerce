@@ -193,6 +193,10 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Account\Web.config" />
+    <Content Include="images\about-extra-1.svg" />
+    <Content Include="images\about-extra-2.svg" />
+    <Content Include="images\about-img.svg" />
+    <Content Include="images\kitty-eth.svg" />
     <Content Include="ManageRoles.aspx" />
     <Content Include="Manage\ManageProducts.aspx" />
     <Content Include="Manage\ManageUsers.aspx" />

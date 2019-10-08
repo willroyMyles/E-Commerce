@@ -9,6 +9,26 @@
             </div>
         </div>
 
+         
+             <div class="container shadow-sm" style=" width:100vw; margin-left:0px; left:auto;">
+                    <div class="row">
+                            <div class="col-md-4">
+                                <img class="img-rounded display-block mx-5" src="images/kitty-eth.svg" style="display: block; max-width: 100%; height: 80%;" />
+                            </div>
+                             <div class="col-md-8 p-3 text-center">
+                                 <h2>What is KrypyoKitties</h2>
+                                 <br />
+                                 <p class="text-muted">CryptoKitties is a game centered around breedable, collectible, and oh-so-adorable creatures we call CryptoKitties! Each cat is one-of-a-kind and 100% owned by you; it cannot be replicated, taken away, or destroyed.</p>
+                            </div>
+                        </div>
+             </div>
+         
+
+        
+        
+
+
+
         <div class="container">
             <div class="row">
                 <div class="col-md-4">

@@ -5,9 +5,13 @@
 
     <asp:UpdatePanel ID="panel" runat="server" >
         <ContentTemplate >
-            <div class="container">
-                <div class="row" ID="Container1" runat="server">
+            <div class="container my-3">
 
+                <div class="row">
+                    <h2>View Products</h2>
+                </div>
+                 <br />
+                <div class="row" ID="Container1" runat="server">
                 </div>
             </div>
 
@@ -36,7 +40,7 @@
                                         <h5 class="text-center" runat="server" id="priceTag">$</h5>
                                     </div>
                                     <div class="col-md-6">
-                                        <input id="quant" type="number" min="1" onchange="updatePriceTag()" />
+                                        <input id="quant" type="number" min="1" value="1" onchange="updatePriceTag()" />
                                     <%--<asp:TextBox ID="quant" runat="server" TextMode="Number" AutoPostBack="false" OnTextChanged="TextBox1_TextChanged" Text="0"></asp:TextBox>--%> 
                                     </div>
                                      <div class="col-md-3">
@@ -52,8 +56,8 @@
                     </div>
                 </div>
             </div>
-            <asp:HiddenField ID="hiddenValue" runat="server" />
-            <asp:HiddenField ID="hiddenQuantity" runat="server" />
+            <asp:HiddenField ID="hiddenValue" runat="server" Value="1" />
+            <asp:HiddenField ID="hiddenQuantity" runat="server" Value="1" />
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>

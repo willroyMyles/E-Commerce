@@ -142,8 +142,20 @@
         function showbutton(e) {
             var id = e.id.split('_')[1];
             var btn = $("#buttonn_" + id);
+            var spin = $("#spin_" + id);
 
             btn.attr("hidden", false);
+            
+
+            if (spin.val() == 0) {
+                $(btn).removeClass("btn-primary");
+                $(btn).addClass("btn-danger");
+                btn.text("Remove")
+            } else {
+                btn.removeClass("btn-danger");
+                btn.addClass("btn-primary");
+                btn.text("Update")
+            }
             
         }
 
