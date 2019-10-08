@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -30,7 +31,6 @@ namespace KK
             this.price = price;
             this.description = description;
         }
-
         public string Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string ImageSource { get => imageSource; set => imageSource = value; }

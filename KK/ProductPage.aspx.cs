@@ -144,7 +144,9 @@ namespace KK
                 prod.Category,
                 prod.Img,
                 prod.Description,
-                GV.user.Id);
+                GV.user.Id, true);
+
+            Response.Redirect("/CartV2.aspx");
         }
     }
 }

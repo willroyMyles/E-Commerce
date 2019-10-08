@@ -37,6 +37,7 @@ namespace KK
         private string id;
         private string description;
         private string owner;
+        private bool show = true;
 
         public static List<Product> productsList = new List<Product>();
         private static int counter = 0;
@@ -52,12 +53,14 @@ namespace KK
         public string Img { get => img; set => img = value; }
         public string Description { get => description; set => description = value; }
         public string Owner { get => owner; set => owner = value; }
+        public bool Show { get => show; set => show = value; }
 
         public Product()
         {
             counter++;
             purchased = new DateTime().ToUniversalTime();
             Id = counter.ToString();
+            show = true;
         }
 
         public Product GetProductById(string id)

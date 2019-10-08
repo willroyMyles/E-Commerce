@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" style="height:100%;">
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,12 +11,12 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="Content/font-awesome.css" rel="stylesheet" />
 
 </head>
-<body>
+<body style="display: flex; flex-direction: column; height:100;">
     <%--<a href="Site.Master">Site.Master</a>--%>
     <form runat="server">
         <asp:ScriptManager runat="server" EnablePageMethods="true">
@@ -39,16 +39,15 @@
             </Scripts>
         </asp:ScriptManager>
 
-         <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-1">
-
                         </div>
                         <div class="col-md-1 nav-item active">
                             <a href="~/" runat="server" class="nav-link">kitty</a>
@@ -63,81 +62,87 @@
                             <a href="~/Contact.aspx" class="nav-link" runat="server">Contact</a>
                         </div>
                         <div class="col-md-1 nav-item">
-                          
                         </div>
                         <div class="col-md-1 nav-item">
                             <a class="nav-link"></a>
                         </div>
-                        
-                          <asp:LoginView runat="server" ViewStateMode="Disabled">
+
+                        <asp:LoginView runat="server" ViewStateMode="Disabled">
 
 
-                                                    <LoggedInTemplate>
+                            <LoggedInTemplate>
 
                                 <% if (IsAdmin())
                                     { %>
-                        <div class="col-md-1 nav-item">
-                            <a class="nav-link" href="~/Manage/ManageProducts.aspx" runat="server">Manage Products</a>
-                        </div>
-                        <div class="col-md-1 nav-item">
-                            <a class="nav-link" href="~/Manage/ManageUsers.aspx" runat="server">Manage Users</a>
-                        </div>
+                                <div class="col-md-1 nav-item">
+                                    <a class="nav-link" href="~/Manage/ManageProducts.aspx" runat="server">Manage Products</a>
+                                </div>
+                                <div class="col-md-1 nav-item">
+                                    <a class="nav-link" href="~/Manage/ManageUsers.aspx" runat="server">Manage Users</a>
+                                </div>
 
-                                <%}else{  %>
-                        <div class="col-md-1 nav-item">
-                            <a class="nav-link">order history</a>
-                        </div>
-                        <div class="col-md-1 nav-item">
-                                <a class="nav-link" href="/CartV2" runat="server">view cart</a>                            
-                        </div>
+                                <%}
+                                else
+                                {  %>
+                                <div class="col-md-1 nav-item">
+                                    <a class="nav-link" href="OrdersPage.aspx">order history</a>
+                                </div>
+                                <div class="col-md-1 nav-item">
+                                    <a class="nav-link" href="/CartV2" runat="server">view cart</a>
+                                </div>
 
-                            <% } %>
-                                                        <div class="dropdown show">
-                                
-                             <%--<a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.Name  %> !</a>--%>
-                             <a class="nav-link dropdown-toggle" href="#" id="account10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-                            <div class="dropdown-menu" aria-labelledby="account10">
-                            <a class="dropdown-item" runat="server" href="~/Account/Manage.aspx" title="Manage your account">Hello, <%= GetUserName()  %> !</a>
-                            <asp:LoginStatus class="dropdown-item" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                
-                            </div>
-                                                            </div>
-                               
+                                <% } %>
+                                <div class="dropdown show">
+
+                                    <%--<a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.Name  %> !</a>--%>
+                                    <a class="nav-link dropdown-toggle" href="#" id="account10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+                                    <div class="dropdown-menu" aria-labelledby="account10">
+                                        <a class="dropdown-item" runat="server" href="~/Account/Manage.aspx" title="Manage your account">Hello, <%= GetUserName()  %> !</a>
+                                        <asp:LoginStatus class="dropdown-item" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+
+                                    </div>
+                                </div>
+
                             </LoggedInTemplate>
 
 
                             <AnonymousTemplate>
                                 <div class="col-md-1">
-                                   <a class="nav-link" runat="server" href="~/Account/Register.aspx">Register</a>
+                                    <a class="nav-link" runat="server" href="~/Account/Register.aspx">Register</a>
                                 </div>
                                 <div class="col-md-2">
-                                   <a class="nav-link" runat="server" href="~/Account/Login.aspx">Log in</a>
+                                    <a class="nav-link" runat="server" href="~/Account/Login.aspx">Log in</a>
                                 </div>
-                                
-                                
+
+
                             </AnonymousTemplate>
-      
-                             
-                              
-                             
-                          </asp:LoginView>
-                        
+
+
+
+
+                        </asp:LoginView>
+
 
                     </div>
                 </div>
             </div>
         </nav>
 
-        <div class="container body-content">
+        <div class="container body-content flex" style="flex: 1 0 auto;">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <asp:ContentPlaceHolder ID="ProductContent" runat="server">
-
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
+            <div style="height:10vh;"></div>
+           <footer class="container-fluid bg-grey py-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h5 class="font-weight-light">powered by fortech</h1>
+                <small>copyright<i class="fa fa-copyright" aria-hidden="true"></i> 2019</small>
+        </div>
+    </div>
+</footer>
         </div>
     </form>
 

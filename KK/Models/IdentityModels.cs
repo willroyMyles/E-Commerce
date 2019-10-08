@@ -75,6 +75,7 @@ namespace KK.Models
 
             modelBuilder.Entity<Product>().ToTable("Products");
             modelBuilder.Entity<Cats>().ToTable("Cats");
+            modelBuilder.Entity<Orders>().ToTable("Orders");
 
             
         }

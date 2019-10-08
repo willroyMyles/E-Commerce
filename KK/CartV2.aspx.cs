@@ -211,5 +211,33 @@ namespace KK
             panel.Update();
         }
 
+        protected void OrderBtn_Click(object sender, EventArgs e)
+        {
+            
+            if(GV.user == null) Response.Redirect("~/CartV2.aspx");
+            DefaultConnectionTableAdapters.OrdersTableAdapter ota = new DefaultConnectionTableAdapters.OrdersTableAdapter();
+            DefaultConnectionTableAdapters.ProductsTableAdapter pta = new DefaultConnectionTableAdapters.ProductsTableAdapter();
+
+            var productTable = pta.GetDataByOwnerId(GV.user.Id);
+            var orderId = Guid.NewGuid().ToString();
+            //add to order table
+            for(int i=0; i < productTable.Count; i++)
+            {
+                var order = Orders.GenerateOrders(orderId);
+                order.ProductId = productTable[i].Id;
+                order.Quantity = productTable[i].Quantity;
+                order.CustomerId = GV.user.Id;
+                order.Subtotal = productTable[i].Quantity * productTable[i].Price;
+                ota.Insert(order.OrderId, order.ProductId, order.CustomerId, order.Quantity, order.Subtotal, order.Purchased);
+            }
+            //change visibility from products table
+            for (int i = 0; i < productTable.Count; i++)
+            {
+                pta.UpdateVisibility(false, productTable[i].Id);
+            }
+            
+
+            Response.Redirect("~/OrdersPage.aspx");
+        }
     }
 }

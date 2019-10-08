@@ -196,6 +196,7 @@
     <Content Include="ManageRoles.aspx" />
     <Content Include="Manage\ManageProducts.aspx" />
     <Content Include="Manage\ManageUsers.aspx" />
+    <Content Include="OrdersPage.aspx" />
     <Content Include="ProductPage.aspx" />
     <Content Include="ProductsPage.aspx" />
     <Content Include="Scripts\bootstrap-input-spinner.js" />
@@ -460,6 +461,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GV.cs" />
+    <Compile Include="Info.cs" />
     <Compile Include="ManageRoles.aspx.cs">
       <DependentUpon>ManageRoles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -517,9 +519,28 @@
     <Compile Include="Migrations\201910021445424_UpdateName.Designer.cs">
       <DependentUpon>201910021445424_UpdateName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910070729221_AddedOrdersTable.cs" />
+    <Compile Include="Migrations\201910070729221_AddedOrdersTable.Designer.cs">
+      <DependentUpon>201910070729221_AddedOrdersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910071914466_UpdateProductTable.cs" />
+    <Compile Include="Migrations\201910071914466_UpdateProductTable.Designer.cs">
+      <DependentUpon>201910071914466_UpdateProductTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910071918132_UpdateProductTable1.cs" />
+    <Compile Include="Migrations\201910071918132_UpdateProductTable1.Designer.cs">
+      <DependentUpon>201910071918132_UpdateProductTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Orders.cs" />
+    <Compile Include="OrdersPage.aspx.cs">
+      <DependentUpon>OrdersPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrdersPage.aspx.designer.cs">
+      <DependentUpon>OrdersPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="ProductPage.aspx.cs">
       <DependentUpon>ProductPage.aspx</DependentUpon>
@@ -612,6 +633,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910021445424_UpdateName.resx">
       <DependentUpon>201910021445424_UpdateName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910070729221_AddedOrdersTable.resx">
+      <DependentUpon>201910070729221_AddedOrdersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910071914466_UpdateProductTable.resx">
+      <DependentUpon>201910071914466_UpdateProductTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910071918132_UpdateProductTable1.resx">
+      <DependentUpon>201910071918132_UpdateProductTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -48,7 +48,7 @@
                    </div>
                    <div class="modal-footer">
                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                       <button type="button" class="btn btn-primary">Place Order</button>
+                       <asp:Button CssClass="btn btn-primary btn-block" ID="OrderBtn" runat="server" Text="Place Order" OnClick="OrderBtn_Click" />
                    </div>
                </div>
            </div>
